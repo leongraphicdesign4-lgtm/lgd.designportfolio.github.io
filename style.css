@@ -1,0 +1,343 @@
+/* ============================================
+   Design tokens
+   Paper / ink / print-proof palette, referencing
+   the register marks & spec sheets of print production.
+   ============================================ */
+:root {
+  --paper: #EDEAE3;
+  --paper-dim: #E2DED4;
+  --ink: #1B1B1F;
+  --ink-soft: #4A4A48;
+  --red: #C81E3E;
+  --blue: #2447A3;
+  --line: #C9C4B6;
+
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* ============================================
+   Signature element: registration/crop marks
+   ============================================ */
+.reg-mark--corner {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.reg-mark--corner span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+}
+.reg-mark--corner span::before,
+.reg-mark--corner span::after {
+  content: "";
+  position: absolute;
+  background: var(--ink);
+  opacity: 0.35;
+}
+.reg-mark--corner span::before { width: 100%; height: 1px; top: 50%; }
+.reg-mark--corner span::after { height: 100%; width: 1px; left: 50%; }
+.reg-mark--corner span:nth-child(1) { top: 16px; left: 16px; }
+.reg-mark--corner span:nth-child(2) { top: 16px; right: 16px; }
+.reg-mark--corner span:nth-child(3) { bottom: 16px; left: 16px; }
+.reg-mark--corner span:nth-child(4) { bottom: 16px; right: 16px; }
+
+/* ============================================
+   Header / nav
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(237, 234, 227, 0.88);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__mark {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.nav__mark-dot { color: var(--red); }
+.nav__links {
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+.nav__links a { text-decoration: none; }
+.nav__links a:hover { color: var(--red); }
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 120px 32px 100px;
+}
+.hero__spec {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+}
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 84px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 32px;
+  max-width: 16ch;
+}
+.hero__title-accent { color: var(--red); }
+.hero__sub {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin: 0 0 40px;
+}
+.hero__meta {
+  display: flex;
+  gap: 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+/* ============================================
+   Section label (shared)
+   ============================================ */
+.section-label {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+}
+.section-label__crop { color: var(--red); font-size: 12px; }
+
+/* ============================================
+   Work grid
+   ============================================ */
+.work { padding: 40px 0 120px; }
+.work-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 40px;
+}
+.work-card__frame {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--ink);
+  overflow: hidden;
+}
+.work-card__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(237,234,227,0.35);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+.work-card__crop {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  z-index: 2;
+}
+.work-card__crop::before,
+.work-card__crop::after {
+  content: "";
+  position: absolute;
+  background: var(--paper);
+}
+.work-card__crop::before { width: 100%; height: 1px; top: 50%; }
+.work-card__crop::after { height: 100%; width: 1px; left: 50%; }
+.work-card__crop.tl { top: 10px; left: 10px; }
+.work-card__crop.tr { top: 10px; right: 10px; }
+.work-card__crop.bl { bottom: 10px; left: 10px; }
+.work-card__crop.br { bottom: 10px; right: 10px; }
+
+.work-card__spec {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.work-card__spec h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 17px;
+  margin: 0;
+}
+.work-card__spec dl {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.work-card__spec dl div { text-align: right; }
+.work-card__spec dt { text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.7; }
+.work-card__spec dd { margin: 2px 0 0; color: var(--ink); }
+
+/* ============================================
+   About
+   ============================================ */
+.about {
+  padding: 80px 0 120px;
+  border-top: 1px solid var(--line);
+}
+.about__grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+}
+.about__text {
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 42ch;
+  margin: 0;
+}
+.about__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.about__facts div {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.about__facts dt { color: var(--ink-soft); }
+.about__facts dd { margin: 0; }
+
+/* ============================================
+   Contact
+   ============================================ */
+.contact {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 120px 32px;
+}
+.contact__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.contact h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.08;
+  margin: 0 0 40px;
+}
+.contact__email {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 4px;
+  margin-bottom: 48px;
+  color: var(--paper);
+}
+.contact__links {
+  display: flex;
+  gap: 28px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.contact__links a { text-decoration: none; opacity: 0.7; }
+.contact__links a:hover { opacity: 1; color: var(--red); }
+
+/* ============================================
+   Footer
+   ============================================ */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 28px 32px 60px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 780px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .about__grid { grid-template-columns: 1fr; gap: 32px; }
+  .nav__links { gap: 18px; }
+  .hero { padding: 90px 24px 70px; }
+  .site-footer { flex-direction: column; gap: 8px; }
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Visible keyboard focus */
+a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
